@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AKB Portal — Aplikasi Komputer Bisnis</title>
+<meta name="description" content="Portal belajar dan kuis Aplikasi Komputer Bisnis: Internet, HTML & CSS, PHP, Database MySQL, dan Perancangan Web Site." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===================== MOBILE TOPBAR ===================== -->
+<div class="mobile-topbar">
+  <div class="brand-mark small">&lt;/&gt;</div>
+  <strong>AKB Portal</strong>
+  <button id="mobileMenuBtn" class="mobile-menu-btn" type="button">☰</button>
+</div>
+
+<div class="app">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">&lt;/&gt;</div>
+      <div class="brand-text">
+        <strong>AKB Portal</strong>
+        <span>Aplikasi Komputer Bisnis</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <p class="nav-label">// menu utama</p>
+      <button class="nav-item is-active" data-page="dashboard">
+        <span class="nav-icon">⌂</span><span>Dashboard</span>
+      </button>
+      <button class="nav-item" data-page="kuis">
+        <span class="nav-icon">▣</span><span>Kuis</span>
+        <span class="nav-badge" id="badgeSoal">…</span>
+      </button>
+      <button class="nav-item" data-page="nilai">
+        <span class="nav-icon">◷</span><span>Nilai Saya</span>
+      </button>
+      <button class="nav-item" data-page="leaderboard">
+        <span class="nav-icon">▲</span><span>Leaderboard</span>
+      </button>
+
+      <p class="nav-label">// pembelajaran</p>
+      <button class="nav-item" data-page="materi">
+        <span class="nav-icon">▥</span><span>Materi</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="themeToggle" type="button">
+        <span id="themeIcon">☾</span><span id="themeLabel">Mode Gelap</span>
+      </button>
+      <div class="user-pill">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <div class="user-info">
+          <strong id="userName">Tamu</strong>
+          <span>D4 Administrasi Bisnis</span>
+        </div>
+        <button class="user-edit" id="userEdit" type="button" title="Ganti nama">✎</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <section class="page is-active" id="page-dashboard">
+      <header class="page-header">
+        <p class="eyebrow">Dashboard</p>
+        <h1>Selamat datang kembali <span id="dashGreetName"></span> 👋</h1>
+      </header>
+
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="pill pill-live"><span class="dot"></span>Portal belajar aktif</span>
+          <h2>Kuasai <span class="accent">Aplikasi Komputer<br>Bisnis</span>, Siap Hadapi UAS</h2>
+          <p>Internet, HTML &amp; CSS, PHP, Database MySQL, sampai merancang website bisnis — semua soal latihan, materi, dan riwayat nilai kamu tersimpan otomatis di sini.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-goto="kuis">▣ Mulai Kuis Sekarang</button>
+            <button class="btn btn-ghost" data-goto="materi">▥ Lihat Materi</button>
+          </div>
+        </div>
+        <div class="hero-cards" aria-hidden="true">
+          <div class="index-card card-1"><span class="card-tag">01</span><strong>Internet</strong><span>Pengertian, manfaat &amp; komponen</span></div>
+          <div class="index-card card-2"><span class="card-tag">02</span><strong>HTML &amp; CSS</strong><span>Struktur &amp; tampilan halaman</span></div>
+          <div class="index-card card-3"><span class="card-tag">03</span><strong>PHP</strong><span>Skrip dinamis sisi server</span></div>
+          <div class="index-card card-4"><span class="card-tag">04</span><strong>Database MySQL</strong><span>Penyimpanan data terstruktur</span></div>
+          <div class="index-card card-5"><span class="card-tag">05</span><strong>Web Site Bisnis</strong><span>Statis &amp; dinamis</span></div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><strong>5</strong><span>Materi Inti</span></div>
+        <div class="stat-card"><strong id="statSoal">…</strong><span>Total Soal</span></div>
+        <div class="stat-card"><strong id="statPeserta">…</strong><span>Sudah Ikut Kuis</span></div>
+        <div class="stat-card"><strong>100%</strong><span>Gratis</span></div>
+      </div>
+
+      <div class="progress-card" id="progressCard" hidden>
+        <h3>Progres Kamu</h3>
+        <div class="progress-grid" id="progressContent"></div>
+      </div>
+    </section>
+
+    <!-- KUIS -->
+    <section class="page" id="page-kuis">
+      <header class="page-header">
+        <p class="eyebrow">Kuis</p>
+        <h1>Pilih kategori untuk mulai</h1>
+      </header>
+
+      <div id="kuisCategoryView">
+        <div class="category-grid" id="categoryGrid">
+          <p class="muted">Memuat kategori…</p>
+        </div>
+      </div>
+
+      <div id="kuisPlayerView" hidden>
+        <div class="quiz-meta">
+          <span id="quizProgressLabel">Soal 1/10</span>
+          <div class="progress-bar"><div class="progress-bar-fill" id="quizProgressFill"></div></div>
+        </div>
+        <div class="quiz-card">
+          <p class="quiz-kategori" id="quizKategoriLabel"></p>
+          <h2 id="quizQuestion"></h2>
+          <div class="quiz-options" id="quizOptions"></div>
+        </div>
+        <div class="quiz-actions">
+          <button class="btn btn-ghost" id="quizCancelBtn" type="button">Batal</button>
+          <button class="btn btn-primary" id="quizNextBtn" type="button" disabled>Selanjutnya</button>
+        </div>
+      </div>
+
+      <div id="kuisResultView" hidden>
+        <div class="result-card">
+          <p class="eyebrow">Hasil Kuis</p>
+          <h1 id="resultPersentase">0%</h1>
+          <p id="resultDetail"></p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="resultRetryBtn" type="button">Ulangi Kuis</button>
+            <button class="btn btn-ghost" data-goto="leaderboard">Lihat Leaderboard</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NILAI SAYA -->
+    <section class="page" id="page-nilai">
+      <header class="page-header">
+        <p class="eyebrow">Nilai Saya</p>
+        <h1>Riwayat kuis kamu</h1>
+      </header>
+
+      <div class="empty-state" id="nilaiEmpty" hidden>
+        <p>Belum ada riwayat kuis. Yuk mulai kuis pertamamu!</p>
+        <button class="btn btn-primary" data-goto="kuis">Mulai Kuis</button>
+      </div>
+
+      <div class="table-wrap" id="nilaiTableWrap" hidden>
+        <table class="data-table">
+          <thead><tr><th>Waktu</th><th>Kategori</th><th>Skor</th><th>Persentase</th></tr></thead>
+          <tbody id="nilaiTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="page" id="page-leaderboard">
+      <header class="page-header">
+        <p class="eyebrow">Leaderboard</p>
+        <h1>Peringkat skor tertinggi</h1>
+      </header>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Nama</th><th>Kategori</th><th>Skor</th><th>Persentase</th></tr></thead>
+          <tbody id="leaderboardBody">
+            <tr><td colspan="5" class="muted">Memuat data…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MATERI -->
+    <section class="page" id="page-materi">
+      <header class="page-header">
+        <p class="eyebrow">Materi</p>
+        <h1>Ringkasan materi Aplikasi Komputer Bisnis</h1>
+      </header>
+
+      <div class="materi-list" id="materiList">
+        <p class="muted">Memuat materi…</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- MODAL: isi nama -->
+<div class="modal-overlay" id="nameModalOverlay">
+  <div class="modal">
+    <h3>Siapa nama kamu?</h3>
+    <p>Nama ini dipakai untuk menyimpan skor kuis dan leaderboard kamu di spreadsheet.</p>
+    <input type="text" id="nameInput" placeholder="Contoh: Fikri" maxlength="40" autocomplete="off" />
+    <button class="btn btn-primary" id="nameSubmitBtn" type="button">Mulai Belajar</button>
+  </div>
+</div>
+
+<!-- overlay saat memanggil server -->
+<div class="loading-overlay" id="loadingOverlay" hidden>
+  <div class="loading-spinner"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
